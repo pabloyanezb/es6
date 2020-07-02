@@ -8,94 +8,43 @@
 		<!-- Bootstrap CSS -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
 		<style>
-			.container>.row {
-				margin-top: 1rem;
+			.row {
+				margin-top: 5rem;
 			}
 		</style>
 		<title>Repaso ES6</title>
 	</head>
-	<body>
-		<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-			<a class="navbar-brand" href="#">Repaso ES6</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	<body id="body">
+
+		<div class="row">
+			<div class="col-2"></div>
+			<div class="col-8">
+				<h1>My Boring Website</h1>
+				<p id="paragraph">
+					This website is boring, with very little CSS. 
+					However, we really just care about the javascript. 
+					For example, if you click <button id="button">this button</button>, the background of this paragraph tag will change to blue.
+				</p>
+				<p>We also have a <button id="alert">alert</button> button that will grab the text from the input below and show it in a popup.</p>
+				<div>
+					<input type="text" id="popup-input">
+				</div>
+				<p>
+					We just like random interactivity in the site, including a fun effect if you hover over 
+					<span id="hover-this"> 
+						<b>this.</b>
+					</span>
+				</p>
+				<p onmouseover="mouseOverFunction(this)" id="click">
+					Another task: This should be another feature. 
+					I want to click anywhere in this paragraph tag and I want to be able to change the background color to whatever is in this input: 
+					<input id="input-color" type="text"/>.
+				</p>
+			</div>
+			<div class="col-2"></div>
+		</div>
 		
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link" href="#">Link</a>
-					</li>
-					<li class="nav-item dropdown">
-						<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-							Dropdown
-						</a>
-						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
-							<a class="dropdown-item" href="#">Action</a>
-							<a class="dropdown-item" href="#">Another action</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="#">Something else here</a>
-						</div>
-					</li>
-					<li class="nav-item">
-						<a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">Disabled</a>
-					</li>
-				</ul>
-				<form class="form-inline my-2 my-lg-0">
-					<input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-					<button id="reiniciar" class="btn btn-outline-success my-2 my-sm-0" type="button">Reiniciar</button>
-				</form>
-			</div>
-		</nav>
-
-		<div class="container">
-			<div class="row">
-				<div class="col-3">
-					<div class="card">
-						<div class="card-header">
-						</div>
-						<div class="card-body">
-						</div>
-					</div>
-				</div>
-				<div class="col-6">
-					<div class="jumbotron">
-					</div>
-				</div>
-				<div class="col-3">
-					<div class="card">
-						<div class="card-header">
-						</div>
-						<div class="card-body">
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="modal-ganador" data-backdrop="static" data-keyboard="false" tabindex="-1" role="dialog" aria-labelledby="staticBackdropLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<h5 class="modal-title" id="staticBackdropLabel">Ganaste!!!</h5>
-						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-							<span aria-hidden="true">&times;</span>
-						</button>
-					</div>
-					<div class="modal-body">
-						Felicidades al Jugador <span id="jugador-ganador">O</span> por ganar.
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Understood</button>
-					</div>
-				</div>
-			</div>
-		</div>
+		
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -148,7 +97,26 @@
 					}
 				}
 			}
+
+			// Solución de ejercicio "Convertir a flecha"
+
+			document.getElementById("button").onclick = () => setBackgroundColorById("paragraph", "blue");
 			
+			document.getElementById("alert").onclick = () => alert(getValueFromId("popup-input"));
+			
+			document.getElementById("hover-this").onmouseover = () => setBackgroundColorById("body", "red");
+
+			document.getElementById("hover-this").onmouseout = () => setBackgroundColorById("body", "white");
+			
+			const getValueFromId = id => document.getElementById(id).value;
+			
+			const setBackgroundColorById = (id, color) => document.getElementById(id).style = "background-color: " + color;
+			
+			const mouseOverFunction = el => el.style = "background-color: black";
+
+			document.getElementById("click").onclick = () => setBackgroundColorById("click", getValueFromId("input-color"));
+			
+
 		</script>
 	</body>
 </html>
